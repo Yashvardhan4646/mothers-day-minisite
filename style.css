@@ -890,9 +890,22 @@ cite {
 
   .masonry-grid { columns: 2 160px; }
 
-  .nav-btn { padding: 8px 10px; min-width: 48px; }
-  .nav-label { display: none; }
-  #float-nav { padding: 10px 10px; }
+  .nav-btn {
+    flex-direction: row;
+    padding: 8px 12px;
+    min-width: auto;
+  }
+  .nav-icon { font-size: 1rem; }
+  .nav-label {
+    display: inline-block;
+    font-size: 0.62rem;
+    white-space: nowrap;
+  }
+  #float-nav {
+    gap: 8px;
+    padding: 10px 12px;
+    overflow-x: auto;
+  }
 
   .preview-cards { gap: 10px; }
   .preview-card { padding: 16px 20px; }
