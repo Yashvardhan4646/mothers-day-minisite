@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A heartfelt Mother's Day tribute — a love that stays forever." />
+  <title>For Mom, With Love</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div id="progress-bar" aria-hidden="true"></div>
+
+  <!-- Toast Notification -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Send Love Float Button -->
+  <button id="send-love-btn" aria-label="Send Love" title="Send Love">
+    <i class="fa-solid fa-heart"></i>
+  </button>
+
+  <!-- Background petals (global) -->
+  <div id="bg-petals" aria-hidden="true"></div>
+
+  <!-- App Shell -->
+  <div id="app">
+
+    <!-- ═══════════════════════════════════════
+         PAGE: HOME
+    ═══════════════════════════════════════ -->
+    <section id="page-home" class="page active" role="main" aria-label="Home">
+
+      <!-- Personalized greeting (shown when opened via shared link) -->
+      <div id="personalized-banner" role="alert"></div>
+
+      <div class="hero-wrapper">
+        <div class="hero-badge">
+          <i class="fa-solid fa-star-of-life"></i>
+          Happy Mother's Day
+          <i class="fa-solid fa-star-of-life"></i>
+        </div>
+
+        <h1 class="hero-title">A Love That<br/><em>Stays Forever.</em></h1>
+        <p class="hero-sub">To the woman who made every ordinary moment feel like magic — this little corner of the internet is made entirely for you.</p>
+
+        <button class="btn-primary" id="btn-start" onclick="navigate('our-story')">
+          <span>Begin Our Journey</span>
+          <i class="fa-solid fa-arrow-right btn-icon"></i>
+        </button>
+
+        <div class="preview-cards">
+          <div class="preview-card" onclick="navigate('our-story')">
+            <div class="preview-icon"><i class="fa-solid fa-book-open"></i></div>
+            <div class="preview-label">Our Story</div>
+          </div>
+          <div class="preview-card" onclick="navigate('memories')">
+            <div class="preview-icon"><i class="fa-solid fa-images"></i></div>
+            <div class="preview-label">Memories</div>
+          </div>
+          <div class="preview-card" onclick="navigate('the-letter')">
+            <div class="preview-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+            <div class="preview-label">Letter</div>
+          </div>
+        </div>
+
+        <div class="scroll-hint" aria-hidden="true">
+          <span>Scroll to explore</span>
+          <div class="scroll-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+      </div>
+
+      <!-- Love Stats -->
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-number" data-target="18">0</div>
+          <div class="stat-suffix">yrs</div>
+          <div class="stat-label">Of Unconditional Love</div>
+        </div>
+        <div class="stat-divider"><i class="fa-solid fa-heart"></i></div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="1000">0</div>
+          <div class="stat-suffix">+</div>
+          <div class="stat-label">Memories Together</div>
+        </div>
+        <div class="stat-divider"><i class="fa-solid fa-heart"></i></div>
+        <div class="stat-item">
+          <div class="stat-number stat-infinity"><i class="fa-solid fa-infinity"></i></div>
+          <div class="stat-label">Love &amp; Gratitude</div>
+        </div>
+      </div>
+
+      <div class="home-quote-section">
+        <blockquote>
+          <p class="quote-text">"A mother's love is the fuel that enables a normal human being to do the impossible."</p>
+          <cite>— Marion C. Garretty</cite>
+        </blockquote>
+      </div>
+
+      <!-- Closing warm section -->
+      <div class="home-closing">
+        <div class="home-closing-inner">
+          <i class="fa-solid fa-spa home-closing-icon"></i>
+          <h2 class="home-closing-title">Every Day is Mother's Day</h2>
+          <p class="home-closing-text">This little site will always be here — a tiny monument to the biggest love in the world. Thank you for being you, Mom.</p>
+          <button class="btn-outline" onclick="navigate('the-letter')">
+            <i class="fa-solid fa-envelope-open-text"></i>
+            Read the Letter
+          </button>
+        </div>
+      </div>
+
+      <!-- Personalize & Share -->
+      <div class="share-card">
+        <div class="share-card-icon"><i class="fa-solid fa-link"></i></div>
+        <h3 class="share-card-title">Make it Personal</h3>
+        <p class="share-card-desc">Add your name and share this site with your mom. She'll see a personalized greeting just for her.</p>
+        <div class="share-inputs">
+          <div class="share-input-group">
+            <label for="input-sender"><i class="fa-solid fa-user"></i> Your Name</label>
+            <input id="input-sender" type="text" placeholder="e.g. Sarah" maxlength="40" />
+          </div>
+          <div class="share-input-group">
+            <label for="input-mom"><i class="fa-solid fa-heart"></i> Mom's Name <span class="optional">(optional)</span></label>
+            <input id="input-mom" type="text" placeholder="e.g. Margaret" maxlength="40" />
+          </div>
+        </div>
+        <div class="share-preview" id="share-preview-box" aria-live="polite"></div>
+        <button class="btn-share" id="btn-copy-link" onclick="copyShareLink()">
+          <i class="fa-solid fa-copy"></i>
+          Copy Shareable Link
+        </button>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         PAGE: OUR STORY
+    ═══════════════════════════════════════ -->
+    <section id="page-our-story" class="page" role="main" aria-label="Our Story">
+      <div class="page-header">
+        <div class="page-eyebrow">Chapter One</div>
+        <h2 class="page-title">Our Story</h2>
+        <p class="page-subtitle">A timeline of love, laughter, and the little moments that made us.</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item left">
+          <div class="timeline-card">
+            <div class="timeline-icon"><i class="fa-solid fa-seedling"></i></div>
+            <div class="timeline-year">The Beginning</div>
+            <h3 class="timeline-heading">You Became My World</h3>
+            <p class="timeline-text">From the very first moment, you wrapped me in warmth I'd never known. You chose to love me before I even knew what love was.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item right">
+          <div class="timeline-card">
+            <div class="timeline-icon"><i class="fa-solid fa-sun"></i></div>
+            <div class="timeline-year">Growing Up</div>
+            <h3 class="timeline-heading">Saturday Morning Pancakes</h3>
+            <p class="timeline-text">Golden batter, syrupy edges, and you humming in the kitchen — some memories live in your senses forever. Those mornings tasted like belonging.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item left">
+          <div class="timeline-card">
+            <div class="timeline-icon"><i class="fa-solid fa-hands-holding"></i></div>
+            <div class="timeline-year">The Hard Days</div>
+            <h3 class="timeline-heading">You Were Always There</h3>
+            <p class="timeline-text">When the world felt too heavy, you knew exactly what to say — or when to say nothing at all. Your presence was always enough.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item right">
+          <div class="timeline-card">
+            <div class="timeline-icon"><i class="fa-solid fa-leaf"></i></div>
+            <div class="timeline-year">Holidays &amp; Seasons</div>
+            <h3 class="timeline-heading">Every Season, Extra Beautiful</h3>
+            <p class="timeline-text">Spring blooms, Christmas mornings, rainy Sundays — everything felt more alive because you were in it, making ordinary days feel like celebrations.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item left">
+          <div class="timeline-card">
+            <div class="timeline-icon"><i class="fa-solid fa-wind"></i></div>
+            <div class="timeline-year">Growing Apart &amp; Closer</div>
+            <h3 class="timeline-heading">Distance Only Proved It</h3>
+            <p class="timeline-text">Miles and years sometimes separated us, but distance only proved how deeply rooted our bond is. You're in everything I do.</p>
+          </div>
+        </div>
+
+        <!-- Pull Quote -->
+        <div class="timeline-pullquote">
+          <i class="fa-solid fa-quote-left timeline-pq-icon"></i>
+          <p>"The moment a child is born, the mother is also born. She never existed before. The woman existed, but the mother, never."</p>
+          <span>— Rajneesh</span>
+        </div>
+
+        <div class="timeline-item right">
+          <div class="timeline-card timeline-card--highlight">
+            <div class="timeline-icon"><i class="fa-solid fa-heart"></i></div>
+            <div class="timeline-year">Today</div>
+            <h3 class="timeline-heading">Still My Favorite Person</h3>
+            <p class="timeline-text">After all the chapters, you remain my home, my compass, and my favorite person in the world. Happy Mother's Day, Mom.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         PAGE: MEMORIES
+    ═══════════════════════════════════════ -->
+    <section id="page-memories" class="page" role="main" aria-label="Memories Gallery">
+      <div class="page-header">
+        <div class="page-eyebrow">A Gallery of Us</div>
+        <h2 class="page-title">Our Memories</h2>
+        <p class="page-subtitle">Snapshots of a life lived together — each one more precious than the last.</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs" role="tablist" aria-label="Filter memories">
+        <button class="filter-btn active" data-filter="all" role="tab">All</button>
+        <button class="filter-btn" data-filter="nature" role="tab">
+          <i class="fa-solid fa-leaf"></i> Nature
+        </button>
+        <button class="filter-btn" data-filter="family" role="tab">
+          <i class="fa-solid fa-heart"></i> Family
+        </button>
+        <button class="filter-btn" data-filter="celebration" role="tab">
+          <i class="fa-solid fa-cake-candles"></i> Celebrations
+        </button>
+      </div>
+
+      <div class="masonry-grid">
+
+        <div class="polaroid-card polaroid-card--tall" data-category="nature">
+          <div class="polaroid-img" style="background: linear-gradient(135deg, #f9c5d1 0%, #fce4ec 50%, #e8d5c4 100%);">
+            <div class="polaroid-overlay-icon"><i class="fa-solid fa-spa"></i></div>
+            <div class="polaroid-hover"><i class="fa-solid fa-expand"></i></div>
+          </div>
+          <div class="polaroid-caption">Spring walks, just us two</div>
+        </div>
+
+        <div class="polaroid-card" data-category="family">
+          <div class="polaroid-img" style="background: linear-gradient(135deg, #fde8d8 0%, #f9c5d1 100%);">
+            <div class="polaroid-overlay-icon"><i class="fa-solid fa-mug-hot"></i></div>
+            <div class="polaroid-hover"><i class="fa-solid fa-expand"></i></div>
+          </div>
+          <div class="polaroid-caption">Sunday morning tea</div>
+        </div>
+
+        <div class="polaroid-card polaroid-card--wide" data-category="nature">
+          <div class="polaroid-img" style="background: linear-gradient(135deg, #e8d5e8 0%, #d4c5f9 100%);">
+            <div class="polaroid-overlay-icon"><i class="fa-solid fa-seedling"></i></div>
+            <div class="polaroid-hover"><i class="fa-solid fa-expand"></i></div>
+          </div>
+          <div class="polaroid-caption">The garden she made bloom</div>
+        </div>
+
+        <div class="polaroid-card" data-category="celebration">
+          <div class="polaroid-img" style="background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 50%, #fce4ec 100%);">
+            <div class="polaroid-overlay-icon"><i class="fa-solid fa-cake-candles"></i></div>
+            <div class="polaroid-hover"><i class="fa-solid fa-expand"></i></div>
+          </div>
+          <div class="polaroid-caption">Every birthday felt special</div>
+        </div>
+
+        <div class="polaroid-card polaroid-card--tall" data-category="family">
+          <div class="polaroid-img" style="background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%);">
+            <div class="polaroid-overlay-icon"><i class="fa-solid fa-star"></i></div>
+            <div class="polaroid-hover"><i class="fa-solid fa-expand"></i></div>
+          </div>
+          <div class="polaroid-caption">Stargazing on the porch</div>
+        </div>
+
+        <div class="polaroid-card" data-category="nature">
+          <div class="polaroid-img" style="background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 50%, #fce4ec 100%);">
+            <div class="polaroid-overlay-icon"><i class="fa-solid fa-water"></i></div>
+            <div class="polaroid-hover"><i class="fa-solid fa-expand"></i></div>
+          </div>
+          <div class="polaroid-caption">Our summer at the coast</div>
+        </div>
+
+        <div class="polaroid-card polaroid-card--wide" data-category="nature">
+          <div class="polaroid-img" style="background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #e8d5c4 100%);">
+            <div class="polaroid-overlay-icon"><i class="fa-solid fa-fan"></i></div>
+            <div class="polaroid-hover"><i class="fa-solid fa-expand"></i></div>
+          </div>
+          <div class="polaroid-caption">She always loved flowers</div>
+        </div>
+
+        <div class="polaroid-card" data-category="family">
+          <div class="polaroid-img" style="background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);">
+            <div class="polaroid-overlay-icon"><i class="fa-solid fa-book"></i></div>
+            <div class="polaroid-hover"><i class="fa-solid fa-expand"></i></div>
+          </div>
+          <div class="polaroid-caption">Bedtime stories &amp; wisdom</div>
+        </div>
+
+        <div class="polaroid-card" data-category="celebration">
+          <div class="polaroid-img" style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #fce4ec 100%);">
+            <div class="polaroid-overlay-icon"><i class="fa-solid fa-music"></i></div>
+            <div class="polaroid-hover"><i class="fa-solid fa-expand"></i></div>
+          </div>
+          <div class="polaroid-caption">Dancing in the kitchen</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         PAGE: THE LETTER
+    ═══════════════════════════════════════ -->
+    <section id="page-the-letter" class="page" role="main" aria-label="A Letter to Mom">
+      <div class="letter-floating-icons" aria-hidden="true" id="letter-floats"></div>
+
+      <div class="page-header">
+        <div class="page-eyebrow">Written with love</div>
+        <h2 class="page-title">Dear Mom,</h2>
+        <div class="reading-time-badge">
+          <i class="fa-regular fa-clock"></i>
+          2 min read
+        </div>
+      </div>
+
+      <div class="letter-container">
+        <div class="letter-paper">
+          <!-- Wax Seal -->
+          <div class="wax-seal" aria-hidden="true">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <div class="letter-date">
+            <i class="fa-regular fa-calendar-heart"></i>
+            Mother's Day, 2026
+          </div>
+
+          <p>I've been thinking about how to write this for a while now. How do you put into words something that fills every quiet corner of your heart? How do you thank someone for being the reason the world feels safe?</p>
+
+          <p>I think about you in the strangest moments — when I smell something warm baking, when a song comes on that you used to hum, when I catch myself saying something you would say and I smile before I even realize it. You are woven into every good part of me.</p>
+
+          <p>You taught me how to be kind. Not by lecturing, but by the way you always made space for others — even when you were tired, even when no one noticed. You showed me that love isn't loud; it's consistent. It's showing up. It's staying.</p>
+
+          <p>I know I haven't always said it enough. Life moves fast, and "thank you" feels too small for what you've given me. But I want you to know: every time I have chosen patience over frustration, chosen to stay when leaving would have been easier, chosen to believe in someone — I learned that from watching you.</p>
+
+          <p>You are the reason I believe in warmth. In gentleness. In the power of a quiet presence. The world is better because you are in it, and <em>I</em> am better because you are mine.</p>
+
+          <p>So today, and every day after, I just want to say — thank you. Thank you for every sacrifice I didn't see. For every prayer you whispered in the dark. For every time you put me first without making me feel guilty for it.</p>
+
+          <p>I love you more than I will ever be able to say.</p>
+
+          <div class="letter-signature">
+            <div class="signature-text">With all my heart,</div>
+            <div class="signature-name">
+              Your Child
+              <i class="fa-solid fa-heart signature-heart"></i>
+            </div>
+          </div>
+
+          <div class="letter-postscript">
+            <i class="fa-solid fa-pen-nib"></i>
+            <em>P.S. — You've always been my favorite. Don't tell the others.</em>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /#app -->
+
+  <!-- ═══════════════════════════════════════
+       FLOATING NAVIGATION (4 pages only)
+  ═══════════════════════════════════════ -->
+  <nav id="float-nav" role="navigation" aria-label="Site Navigation">
+    <button class="nav-btn" data-route="home" onclick="navigate('home')" aria-label="Home">
+      <span class="nav-icon"><i class="fa-solid fa-house"></i></span>
+      <span class="nav-label">Home</span>
+    </button>
+    <button class="nav-btn" data-route="our-story" onclick="navigate('our-story')" aria-label="Our Story">
+      <span class="nav-icon"><i class="fa-solid fa-book-open"></i></span>
+      <span class="nav-label">Story</span>
+    </button>
+    <button class="nav-btn" data-route="memories" onclick="navigate('memories')" aria-label="Memories">
+      <span class="nav-icon"><i class="fa-solid fa-images"></i></span>
+      <span class="nav-label">Memories</span>
+    </button>
+    <button class="nav-btn" data-route="the-letter" onclick="navigate('the-letter')" aria-label="The Letter">
+      <span class="nav-icon"><i class="fa-solid fa-envelope-open-text"></i></span>
+      <span class="nav-label">Letter</span>
+    </button>
+  </nav>
+
+  <!-- Page Transition Overlay -->
+  <div id="transition-overlay" aria-hidden="true"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
